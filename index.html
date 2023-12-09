@@ -51,7 +51,7 @@
     }
 
     .screentime {
-      margin-top: 30px;
+      margin-top: 20px;
     }
 
   </style>
@@ -76,6 +76,23 @@
       return news
     }
 
+    const hours=(minutes) => {
+      const h=Math.floor(minutes/60)
+      return `${h} hour${h===1? '':'s'}`
+    }
+
+    const minutes=(minutes) => {
+      const m=minutes%60
+      return `${m} minute${m===1? '':'s'}`
+    }
+
+    const screenTimeHuman=(minutes) => {
+      if(minutes>60)
+        return `${hours} and ${minutes}`
+      else
+        return minutes
+    }
+
       ; (async () => {
         const news=await getPuppeteerData()
         console.log(`news: ${JSON.stringify(news)}`)
@@ -91,7 +108,7 @@
         //   })
         //   .join('')
         newsEl.innerHTML=items
-        screenTimeEl.innerHTML=screenTime
+        screenTimeEl.innerHTML=screenTimeHuman(screenTime)
       })()
   </script>
 </body>
