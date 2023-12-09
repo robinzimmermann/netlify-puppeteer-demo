@@ -56,11 +56,15 @@
       ; (async () => {
         const news=await getPuppeteerData()
         console.log(`news: ${JSON.stringify(news)}`)
-        const items=news
-          .map((item) => {
-            return `<div><h2>${item.teacher}, ${item.grade}</h2>`
-          })
-          .join('')
+        Object.keys(news).map(subject => {
+          const gradeDetails=news[ subject ];
+          return `<div>${subject}, ${gradeDetails.teacher}, ${gradeDetails.grade}</div>`
+        }).join('')
+        // const items=news
+        //   .map((item) => {
+        //     return `<div><h2>${item.teacher}, ${item.grade}</h2>`
+        //   })
+        //   .join('')
         newsEl.innerHTML=items
       })()
   </script>
