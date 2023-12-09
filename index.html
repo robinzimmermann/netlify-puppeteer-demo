@@ -58,11 +58,9 @@
 </head>
 
 <body>
-  <h2>Netlify Puppeteer Test</h2>
+  <h2>Screentime calculator</h2>
 
-  <p>News headlines from <a href="https://lite.cnn.com/">cnn lite</a></p>
-
-  <div class="news">Loading news…</div>
+  <div class="news">Loading grades…</div>
 
   <div class="screenTime">screen time:</div>
 
@@ -93,23 +91,40 @@
         return mins
     }
 
-      ; (async () => {
-        const news=await getPuppeteerData()
-        console.log(`news: ${JSON.stringify(news)}`)
-        let screenTime=0;
-        const items=Object.keys(news).map(subject => {
-          const gradeDetails=news[ subject ];
-          screenTime+=gradeDetails.screenTime;
-          return `<div class="gradeDetails"><div class="subject">${subject}</div><div class="teacher">${gradeDetails.teacher}</div><div class="grade">${gradeDetails.grade}</div></div>`
-        }).join('')
-        // const items=news
-        //   .map((item) => {
-        //     return `<div><h2>${item.teacher}, ${item.grade}</h2>`
-        //   })
-        //   .join('')
-        newsEl.innerHTML=items
-        screenTimeEl.innerHTML=screenTimeHuman(screenTime)
-      })()
+    function gradeColor(grade) {
+      switch(grade) {
+        case 'A+':
+        case 'A':
+        case 'A-':
+          return '#4cba51'
+        case 'B+':
+        case 'B':
+        case 'B-':
+          return '#95ba48'
+        case 'C+':
+        case 'C':
+        case 'C-':
+          return '#e8a636 '
+        default: return '#c63627'
+      }
+    }
+    ; (async () => {
+      const news=await getPuppeteerData()
+      console.log(`news: ${JSON.stringify(news)}`)
+      let screenTime=0;
+      const items=Object.keys(news).map(subject => {
+        const gradeDetails=news[ subject ];
+        screenTime+=gradeDetails.screenTime;
+        return `<div class="gradeDetails"><div class="subject">${subject}</div><div class="teacher">${gradeDetails.teacher}</div><div class="grade" style="color: ${gradeColor(gradeDetails.grade)}">${gradeDetails.grade}</div></div>`
+      }).join('')
+      // const items=news
+      //   .map((item) => {
+      //     return `<div><h2>${item.teacher}, ${item.grade}</h2>`
+      //   })
+      //   .join('')
+      newsEl.innerHTML=items
+      screenTimeEl.innerHTML=screenTimeHuman(screenTime)
+    })()
   </script>
 </body>
 
