@@ -1,45 +1,53 @@
-import chromium from '@sparticuz/chromium'
-import puppeteer from 'puppeteer-core'
+import chromium from "@sparticuz/chromium";
+import puppeteer from "puppeteer-core";
 
-const url = 'https://lite.cnn.com/'
+const url = "https://lite.cnn.com/";
+// const url = 'https://portal.wcsd.k12.ca.us/parent/LoginParent.aspx'
 
-chromium.setHeadlessMode = true
-chromium.setGraphicsMode = false
+chromium.setHeadlessMode = true;
+chromium.setGraphicsMode = false;
 
-export async function handler(event, context) {
+export async function handler(_event, _context) {
+  console.log(
+    "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
+  );
   try {
     const browser = await puppeteer.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
-      executablePath: process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath('/var/task/node_modules/@sparticuz/chromium/bin')),
-    })
+      executablePath:
+        process.env.CHROME_EXECUTABLE_PATH ||
+        (await chromium.executablePath(
+          "/var/task/node_modules/@sparticuz/chromium/bin",
+        )),
+    });
 
-    const page = await browser.newPage()
+    const page = await browser.newPage();
 
-    await page.goto(url)
+    await page.goto(url);
 
-    await page.waitForSelector('.title')
+    await page.waitForSelector(".title");
 
-    const results = await page.$$eval('ul li', (articles) => {
+    const results = await page.$$eval("ul li", (articles) => {
       return articles.map((link) => {
         return {
-          title: link.querySelector('a').innerText,
-          url: link.querySelector('a').href,
-        }
-      })
-    })
+          title: link.querySelector("a").innerText,
+          url: link.querySelector("a").href,
+        };
+      });
+    });
 
-    await browser.close()
+    await browser.close();
 
     return {
       statusCode: 200,
       body: JSON.stringify(results),
-    }
+    };
   } catch (error) {
-    console.error(error)
+    console.error(error);
     return {
       statusCode: 500,
       body: JSON.stringify({ error }),
-    }
+    };
   }
 }
