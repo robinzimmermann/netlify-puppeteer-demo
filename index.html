@@ -34,6 +34,22 @@
       text-decoration-color: rgb(255 255 255 / 0.3);
     }
 
+    .gradeDetails {
+      display: flex;
+    }
+
+    .subject {
+      width: 120px;
+    }
+
+    .teacher {
+      width: 120px;
+    }
+
+    .grade {
+      width: 40px;
+    }
+
   </style>
 </head>
 
@@ -43,6 +59,8 @@
   <p>News headlines from <a href="https://lite.cnn.com/">cnn lite</a></p>
 
   <div class="news">Loading news…</div>
+
+  <div class="screenTime">screen time:</div>
 
   <script>
     const newsEl=document.querySelector('.news')
@@ -56,9 +74,11 @@
       ; (async () => {
         const news=await getPuppeteerData()
         console.log(`news: ${JSON.stringify(news)}`)
+        let screenTime=0;
         const items=Object.keys(news).map(subject => {
           const gradeDetails=news[ subject ];
-          return `<div>${subject}, ${gradeDetails.teacher}, ${gradeDetails.grade}</div>`
+          screenTime+=gradeDetails.screenTime;
+          return `<div class="gradeDetails"><div class="subject">${subject}</div><div class="teacher">${gradeDetails.teacher}</div><div class="grade">${gradeDetails.grade}</div></div>`
         }).join('')
         // const items=news
         //   .map((item) => {
