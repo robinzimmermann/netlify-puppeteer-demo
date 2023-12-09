@@ -50,6 +50,10 @@
       width: 40px;
     }
 
+    .screentime {
+      margin-top: 30px;
+    }
+
   </style>
 </head>
 
@@ -64,6 +68,7 @@
 
   <script>
     const newsEl=document.querySelector('.news')
+    const screenTimeEl=document.querySelector('.screenTime')
 
     const getPuppeteerData=async () => {
       const puppetData=await fetch('/.netlify/functions/puppet')
@@ -86,6 +91,7 @@
         //   })
         //   .join('')
         newsEl.innerHTML=items
+        screenTimeEl.innerHTML=screenTime
       })()
   </script>
 </body>
