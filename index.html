@@ -88,7 +88,7 @@
 
     const screenTimeHuman=(mins) => {
       if(mins>60)
-        return `${hours()} and ${minutes()}`
+        return `${hours(mins)} and ${minutes(mins)}`
       else
         return mins
     }
