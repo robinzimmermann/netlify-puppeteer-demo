@@ -56,7 +56,7 @@
       ; (async () => {
         const news=await getPuppeteerData()
         console.log(`news: ${JSON.stringify(news)}`)
-        Object.keys(news).map(subject => {
+        const items=Object.keys(news).map(subject => {
           const gradeDetails=news[ subject ];
           return `<div>${subject}, ${gradeDetails.teacher}, ${gradeDetails.grade}</div>`
         }).join('')
