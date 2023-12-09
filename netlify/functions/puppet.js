@@ -90,7 +90,7 @@ export async function handler(_event, _context) {
         //   grades.Advisory = { teacher: 'Mrs Albaugh', grade, screenTime };
         //   break;
         case "1 - Tech 1 - Q2 - Quarter 2":
-          grades["Tech Theatre"] = { teacher: "Baez", grade, screenTime };
+          grades["Tech Theatre"] = { teacher: "Mrs Baez", grade, screenTime };
           break;
         case "PE 2 - Quarter 2":
           grades.PE = { teacher: "Mrs Kern", grade, screenTime };
