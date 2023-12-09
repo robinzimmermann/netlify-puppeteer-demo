@@ -1,8 +1,8 @@
 import chromium from "@sparticuz/chromium";
 import puppeteer from "puppeteer-core";
 
-const url = "https://lite.cnn.com/";
-// const url = 'https://portal.wcsd.k12.ca.us/parent/LoginParent.aspx'
+// const url = "https://lite.cnn.com/";
+const url = "https://portal.wcsd.k12.ca.us/parent/LoginParent.aspx";
 
 chromium.setHeadlessMode = true;
 chromium.setGraphicsMode = false;
