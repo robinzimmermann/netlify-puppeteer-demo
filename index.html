@@ -58,7 +58,7 @@
         console.log(`news: ${JSON.stringify(news)}`)
         const items=news
           .map((item) => {
-            return `<div><h2><a href="${item.url}">${item.title}</a></h2>`
+            return `<div><h2>${item.teacher}, ${item.grade}</h2>`
           })
           .join('')
         newsEl.innerHTML=items
