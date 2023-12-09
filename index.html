@@ -52,13 +52,14 @@
 
     .screentime {
       margin-top: 20px;
+      display: none;
     }
 
   </style>
 </head>
 
 <body>
-  <h2>Screentime calculator</h2>
+  <h2>Screen time calculator</h2>
 
   <div class="news">Loading grades…</div>
 
@@ -123,7 +124,8 @@
       //   })
       //   .join('')
       newsEl.innerHTML=items
-      screenTimeEl.innerHTML=screenTimeHuman(screenTime)
+      screenTimeEl.innerHTML=`screen time: ${screenTimeHuman(screenTime)}`
+      screenTimeEl.style.display='block'
     })()
   </script>
 </body>
