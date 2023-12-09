@@ -76,21 +76,21 @@
       return news
     }
 
-    const hours=(minutes) => {
-      const h=Math.floor(minutes/60)
+    const hours=(mins) => {
+      const h=Math.floor(mins/60)
       return `${h} hour${h===1? '':'s'}`
     }
 
-    const minutes=(minutes) => {
-      const m=minutes%60
+    const minutes=(mins) => {
+      const m=mins%60
       return `${m} minute${m===1? '':'s'}`
     }
 
-    const screenTimeHuman=(minutes) => {
-      if(minutes>60)
-        return `${hours} and ${minutes}`
+    const screenTimeHuman=(mins) => {
+      if(mins>60)
+        return `${hours()} and ${minutes()}`
       else
-        return minutes
+        return mins
     }
 
       ; (async () => {
