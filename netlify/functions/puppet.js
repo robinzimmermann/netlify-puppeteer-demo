@@ -17,6 +17,7 @@ export async function handler(_event, _context) {
         (await chromium.executablePath(
           "/var/task/node_modules/@sparticuz/chromium/bin",
         )),
+      timeout: 30000,
     });
 
     const page = await browser.newPage();
