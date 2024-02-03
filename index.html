@@ -61,7 +61,7 @@
 <body>
   <h2>Screen time calculator</h2>
 
-  <div class="news">Loading grades…</div>
+  <div class="news">Loading grades… A</div>
 
   <div class="screenTime">screen time:</div>
 
@@ -110,7 +110,7 @@
       }
     }
     ; (async () => {
-      const news=await getPuppeteerData()
+      const news=await getPuppeteerData();
       console.log(`news: ${JSON.stringify(news)}`)
       let screenTime=0;
       const items=Object.keys(news).map(subject => {
